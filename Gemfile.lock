@@ -216,6 +216,13 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.29.0)
       parser (>= 3.2.1.0)
+    rubocop-performance (1.18.0)
+      rubocop (>= 1.7.0, < 2.0)
+      rubocop-ast (>= 0.4.0)
+    rubocop-rails (2.20.2)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 1.33.0, < 2.0)
     ruby-lsp (0.7.4)
       language_server-protocol (~> 3.17.0)
       sorbet-runtime
@@ -245,6 +252,9 @@ GEM
       actionpack (>= 3.1)
       railties (>= 3.1)
       slim (>= 3.0, < 6.0, != 5.0.0)
+    slim_lint (0.24.0)
+      rubocop (>= 1.0, < 2.0)
+      slim (>= 3.0, < 6.0)
     solargraph (0.49.0)
       backport (~> 1.2)
       benchmark
@@ -322,11 +332,14 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 7.0.6)
   rubocop
+  rubocop-performance
+  rubocop-rails
   ruby-lsp-rails
   selenium-webdriver
   sentry-rails
   simple_form
   slim-rails
+  slim_lint
   solargraph
   sprockets-rails
   sqlite3
