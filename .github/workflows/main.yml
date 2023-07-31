@@ -23,5 +23,7 @@ jobs:
         with:
           bundler-cache: true
 
-      - run: make setup
-      - run: make check
+      - run: |
+          make setup
+          bin/rails assets:precompile
+          make test
