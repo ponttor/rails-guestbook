@@ -1,6 +1,6 @@
 # rails-guestbook
 
-[![github action status](https://github.com/hexlet-components/rails-guestbook/workflows/PHP%20CI/badge.svg)](../../actions)
+[![Main](https://github.com/hexlet-components/rails-guestbook/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/hexlet-components/rails-guestbook/actions/workflows/main.yml)
 
 ## Requirements
 
