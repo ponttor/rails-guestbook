@@ -1,0 +1,28 @@
+.container
+  .p-5.text-center
+    .py-5
+      h1.text-body-emphasis
+        | Guestbook
+      p.col-lg-8.mx-auto.lead
+        | Please leave to us your feedback.
+  .row.px-5
+    .col-md-8
+      h4 = 'Posts'
+      - @posts.each do |post|
+        .card.mb-3
+          .card-header
+            span = post.title
+            span.text-muted.ps-2 = distance_of_time_in_words(post.created_at)
+          .card-body
+            = post.body
+
+    .col-md-4
+      h4 = 'Feedback form'
+      .card
+        .card-body
+          = simple_form_for(@post) do |f|
+            = f.error_notification
+            = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+            = f.input :title
+            = f.input :body, input_html: { rows: 10 }
+            = f.button :submit, class: 'btn-primary'

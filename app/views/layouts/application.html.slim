@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    title
+      | Rails Guest Book
+    meta[name='viewport' content='width=device-width,initial-scale=1']
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true
+  body
+    - flash.each do |_, value|
+      .alert.alert-info
+        =value
+    = yield
+    footer.container.d-flex.flex-wrap.justify-content-between.align-items-center.py-3.my-4.border-top
+      p.col-md-4.mb-0.text-body-secondary
+        = "© #{Time.zone.today.year} Hexlet"
