@@ -1,0 +1,35 @@
+services:
+  - type: redis
+    name: sidekiq-redis
+    region: ohio
+    maxmemoryPolicy: noeviction
+    ipAllowList: [] # only allow internal connections
+
+  - type: worker
+    name: sidekiq-worker
+    runtime: ruby
+    region: ohio
+    buildCommand: bundle install
+    startCommand: bundle exec sidekiq
+    envVars:
+      - key: redis://red-cl50n6lqkk8c73c2a04g:6379
+        fromService:
+          type: redis
+          name: sidekiq-redis
+          property: connectionString
+      - key: b7b313652d5d3dac0b89f0237e015eeb7df30ca6d127b2ab4544500311b9b4d389c9f5f956c885e03dcf707dd3bb4d533b47ddc71ff3d1f920a1113543b94562
+        sync: false
+  - type: web
+    name: rails-web
+    runtime: ruby
+    region: ohio
+    buildCommand: bundle install; bundle exec rake assets:precompile; bundle exec rake assets:clean;
+    startCommand: bundle exec puma -t 5:5 -p ${PORT:-3000} -e ${RACK_ENV:-development}
+    envVars:
+      - key: redis://red-cl50n6lqkk8c73c2a04g:6379
+        fromService:
+          type: redis
+          name: sidekiq-redis
+          property: connectionString
+      - key: b7b313652d5d3dac0b89f0237e015eeb7df30ca6d127b2ab4544500311b9b4d389c9f5f956c885e03dcf707dd3bb4d533b47ddc71ff3d1f920a1113543b94562
+        sync: false
